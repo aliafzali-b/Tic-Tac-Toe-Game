@@ -1,3 +1,4 @@
+import React,{useEffect} from 'react'
 import { connect } from 'react-redux'
 import { buildmatrix,changecell,changelength } from "../actions";
 import CardContainer from "./Cardcontainer";
@@ -162,6 +163,14 @@ const computerThink=(matrix,length,computerValue,humanValue)=>{
 }
 
 function App(props) {
+  const cha=(l)=>{
+    const tureL=Number.parseInt(l)
+    if (Number.isInteger(tureL)){
+      props.changelength(tureL)
+      props.buildmatrix(tureL)
+    }
+  }
+  useEffect(()=>cha(3),[])
   const {length}=props
   const imageSize=500/length;
   const information={rows:length,imageSize:imageSize}
@@ -181,12 +190,14 @@ function App(props) {
   
   return (
     <div className="App">
-      <input type='button' value='console.log store matrix' onClick={()=>console.log(props.matrix)}/>
-      <input type='button' value='build' onClick={()=>props.buildmatrix(props.length)}/>
-      <input type='button' value='length = 4' onClick={()=>props.changelength(4)}/>
+      {/* <input type='button' value='console.log store matrix' onClick={()=>console.log(props.matrix)}/>
+      <input type='button' value='build' onClick={()=>props.buildmatrix(props.length)}/> */}
+      <input type='number' value={length} onChange={(e)=>cha(e.target.value)}/>
+      <input type='button' value='Reset' onClick={()=>cha(props.length)}/>
+      {/* <input type='button' value='length = 4' onClick={()=>props.changelength(4)}/>
       <input type='button' value='val func' onClick={()=>valuationFunction(props.matrix,props.length)}/>
       <input type='button' value='win posibilites' onClick={()=>winPossibilities(props.matrix,props.length,-1)}/>
-      <input type='button' value='do best' onClick={()=>computerAct()}/>
+      <input type='button' value='do best' onClick={()=>computerAct()}/> */}
       <CardContainer cards={props.matrix} information={{rows:length,imageSize:imageSize}} handelhumanclick={humanAct}/>
     </div>
   );

@@ -5,3 +5,11 @@
   flex-flow: row nowrap;
   justify-content: center;
 }
+.CardContainer {
+  width: 100%;
+  background-color: aqua;
+  margin: 20px auto 0;
+}
+.Card {
+  margin-right: 5px;
+}
