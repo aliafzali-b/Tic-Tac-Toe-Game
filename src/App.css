@@ -1,0 +1,7 @@
+.Appp {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
